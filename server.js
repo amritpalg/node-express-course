@@ -5,6 +5,12 @@ const app=express();
 app.use(bodyParser.json());
 const mockUserData=[{name:'Mark'},{name:'Jill'}]
 
+app.use(function(err,req,res,next){
+
+    console.error(err.stack);
+    res.status(500).send('something Broke');
+
+})
 app.post("/login",function(req,res){
 
     const username=req.body.username;
